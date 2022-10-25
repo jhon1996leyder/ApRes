@@ -80,10 +80,13 @@ WSGI_APPLICATION = 'ApiRest.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'OPTIONS': {
-            'service': 'my_service',
-            'passfile': '.my_pgpass',
-        },
+        'Host': 'ec2-54-160-200-167.compute-1.amazonaws.com',
+        'Database':'d5kc4f8c0rrcik',
+        'User':'pubquetzbggfcb',
+        'Port':'5432',
+        'Password':'5ce6c038b494c65cac12770db74c2bab2e1afbcca78d459f9b2d88c0bed060b4',
+        'URI':'postgres://pubquetzbggfcb:5ce6c038b494c65cac12770db74c2bab2e1afbcca78d459f9b2d88c0bed060b4@ec2-54-160-200-167.compute-1.amazonaws.com:5432/d5kc4f8c0rrcik',
+        'Heroku':'heroku pg:psql postgresql-concentric-71606 --app cryptic-castle-58643',
     }
 }
 
