@@ -50,7 +50,6 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     "django.middleware.security.SecurityMiddleware",
-    "whitenoise.middleware.WhiteNoiseMiddleware",
 ]
 
 ROOT_URLCONF = 'ApiRest.urls'
@@ -79,14 +78,8 @@ WSGI_APPLICATION = 'ApiRest.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'Host': 'ec2-54-160-200-167.compute-1.amazonaws.com',
-        'Database':'d5kc4f8c0rrcik',
-        'User':'pubquetzbggfcb',
-        'Port':'5432',
-        'Password':'5ce6c038b494c65cac12770db74c2bab2e1afbcca78d459f9b2d88c0bed060b4',
-        'URI':'postgres://pubquetzbggfcb:5ce6c038b494c65cac12770db74c2bab2e1afbcca78d459f9b2d88c0bed060b4@ec2-54-160-200-167.compute-1.amazonaws.com:5432/d5kc4f8c0rrcik',
-        'Heroku':'heroku pg:psql postgresql-concentric-71606 --app cryptic-castle-58643',
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
 
@@ -125,28 +118,14 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.1/howto/static-files/
 
-STATIC_URL = 'static/'
+STATIC_URL = '/static/'
 
 # Default primary key field type
-# https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field
+# https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
 
-DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+#DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-# configure Django App for Heroku.
+
+# Configure Django App for Heroku.
 import django_heroku
 django_heroku.settings(locals())
-
-# Update database configuration with $DATABASE_URL.
-import dj_database_url  
-db_from_env = dj_database_url.config(conn_max_age=500)  
-DATABASES['default'].update(db_from_env)
-
-import os  
-STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')  
-STATIC_URL = '/static/'
-# Extra places for collectstatic to find static files.
-STATICFILES_DIRS = (  
-    os.path.join(BASE_DIR, 'static'),
-)
-
-STATICFILES_STORAGE = 'whitenoise.django.GzipManifestStaticFilesStorage'
